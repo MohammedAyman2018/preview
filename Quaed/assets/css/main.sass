@@ -1,0 +1,65 @@
+$brown: #C87155
+$light-green: #49af4d
+$blue: #6C63FF
+
+img
+  max-width: 100%
+  height: auto
+
+.page-enter-active, .page-leave-active
+  transition: opacity .5s
+
+.page-enter, .page-leave-active
+  opacity: 0
+
+.ql-align-center
+  text-align: center !important
+*
+  direction: rtl
+  text-align: right
+  font-family: "Lalezar"
+
+  //  font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+  line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300))) !important
+.btn, p, span
+  font-size: calc(13px + (16 - 13) * ((100vw - 300px) / (1600 - 300))) !important
+h1
+  font-size: calc(22px + (50 - 22) * ((100vw - 300px) / (1600 - 300))) !important
+h2
+  font-size: calc(20px + (40 - 20) * ((100vw - 300px) / (1600 - 300))) !important
+h3
+  font-size: calc(14px + (20 - 14) * ((100vw - 300px) / (1600 - 300))) !important
+
+.header
+  text-decoration: underline
+  color: white
+
+ul.custom-list
+  list-style: none
+  padding-right: 0
+
+  li
+    position: relative
+    margin-bottom: 10px
+    span
+      color: white
+      margin-right: 30px
+
+    &::before
+      background-image: url('~assets/img/brown.png')
+      content: ''
+      width: 20px
+      height: 20px
+      position: absolute
+      background-size: cover
+      background-position: center
+      right: 0 
+      top: 50%
+      transform: translateY(-50%)
+
+.ql-picker-item
+  color: black
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg
+  right: auto
+.ql-editor.ql-blank::before
+  position: relative !important
