@@ -1,0 +1,40 @@
+extends ../layout.pug
+
+block styles
+    link(rel="stylesheet", href="/static/css/social_btns.css")
+    title= "لابات | أنشئ حساب"    
+
+block content
+    include ../utils/text-input
+    include ../utils/password-input    
+    include ../utils/fb
+    include ../utils/google
+
+    section.py-5
+        .container
+            h2.header أنشئ حساب
+            if (error!= '')
+                .alert.alert-warning.alert-dismissible.fade.show(role="alert")
+                    if(error.message == '"password2" must be [ref:password]')
+                        strong تأكد من تطابق كلمتي السر
+                    else
+                        strong #{error.message}
+                    
+                    button.close(type="button", data-dismiss="alert", aria-label="Close")
+                        span(aria-hidden="true") ×
+            
+            .social.d-flex.flex-wrap.flex-column.my-3
+                +fb_btn('/auth/facebook', "سجل حساب بالفيس بوك")
+                +google_btn('/auth/google', "سجل بحساب جوجل")
+            .line 
+                span أو 
+            form.mx-auto(action="/auth/register", method="post", style="max-width: 300px")
+                +textInput("اسمك:", "name", "أدخل اسمك", name)
+                +textInput("البريد الإلكتروني:", "email", "مثال: example@example.com", email)
+                +textInput("رقم الهاتف:", "phone_number", "أدخل رقم هاتفك", phone_number)
+                +passwordInput('كلمة السر:', "password", "أدخل كلمة السر", password)
+                +passwordInput('كلمة السر مرة أخرى:', "password2", "أدخل كلمة السر مرة أخرى", password2)
+                
+                a.mt-3(href="/login") لديك حساب بالفعل؟
+                .text-center.mt-3
+                    button.btn.btn-primary(type="submit") سجل حساب

@@ -1,0 +1,14 @@
+mixin slider(title,name ,choices,ulClass)
+    .slider.border
+        button.btn.btn-lg.btn-block.border-bottom.d-flex.justify-content-between.align-items-center(type="button") 
+            | #{title}
+            span.mr-3.oi.oi-chevron-bottom
+            
+        ul.list-unstyled(class=ulClass)
+            each choice in choices
+                li.list-unstyled-item 
+                    .form-check
+                        input.form-check-input(type="checkbox", id=choice._id ,name=name, value= choice._id)
+                        label.form-check-label(for= choice._id)
+                            bdi #{choice._id}
+                            sub.text-muted.mx-2= `(${choice.no})`

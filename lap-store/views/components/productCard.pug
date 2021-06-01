@@ -1,0 +1,16 @@
+mixin productCard(lap)
+    // Start Product Card
+    .product-card(data-aos="fade-up")
+        a(href=`/laps/${lap.title.split(' ').join('-')}`)
+            .product-card-tags.d-flex.mb-2
+                each tag in lap.tags
+                    span.badge.badge-primary.ml-1= tag
+
+            .product-card-image.text-center
+                img(src=`${lap.more_images[0] || lap.more_images || "https://res.cloudinary.com/accsys/image/upload/v1589397477/desyjckqyqn8bsphu9fg.jpg" }` class="img-fluid" alt=lap.title)
+            .product-card-details
+                p.product-card-title= `${lap.title}`
+        .d-flex.justify-content-between
+            span.product-card-price.color= lap.price
+                sub جنيه
+    // End Product Card

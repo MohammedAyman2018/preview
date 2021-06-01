@@ -1,0 +1,25 @@
+extends ./layout.pug
+block styles
+    link(rel="stylesheet", href="/static/css/libs/font-awesome.css")
+
+
+block content
+    include ./components/admin-order
+    section.my-4.col-12
+        include ../components/loader.pug
+        ul.list-group.p-0.w-full
+            li.list-group-item.disabled(aria-disabled="true") الطلبيات
+            - if(orders.length > 0) 
+                each order in orders
+                    - if(order.sent && !order.delivred)
+                        +an_order(order,"list-group-item-primary")
+                    - else if (order.sent && order.delivred)
+                        +an_order(order,"list-group-item-success")
+                    - else
+                        +an_order(order, " ")
+
+            - else 
+                li.list-group-item 
+                    p لا يوجد طلبيات
+block scripts 
+    script(src="/static/js/pages/orders.js")

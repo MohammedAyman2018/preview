@@ -1,0 +1,37 @@
+extends ../layout.pug
+
+block styles
+    link(rel="stylesheet", href="/static/css/social_btns.css")
+    title= "لابات | سجل دخول"
+
+block content
+    include ../utils/text-input
+    include ../utils/password-input
+    include ../utils/fb
+    include ../utils/google
+
+    main.container.py-5
+        section
+            h2.header=user.name
+            ul.list-unstyled.p-0
+                li.list-item 
+                    - if (user.fbID != null)
+                        img.ml-2(width="25px", src="static/images/social/facebook.png")  
+                        | تم الربط بالفيس بوك
+                    - else 
+                        +fb_btn('/auth/facebook', "سجل دخول بالفيس بوك")
+
+                li.list-item 
+                    - if (user.fbID != null)
+                        img.ml-2(width="25px", src="static/images/social/google.png") 
+                        | تم الربط بجوجل
+                    - else 
+                        +google_btn('/auth/google', "سجل دخول بحساب جوجل")
+                    
+                li.list-item 
+                    - if (user.fbID != null)
+                        img.ml-2(width="25px", src="static/images/social/whatsapp.png")
+                        | #{user.phone_number}
+                    - else 
+                        +google_btn('/auth/google', "سجل دخول بحساب جوجل")
+                

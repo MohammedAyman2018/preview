@@ -1,0 +1,11 @@
+mixin an_order(order,classes=" ")
+    li.list-group-item(class=classes)
+        .user.w-full.col-12.d-flex.flex-column.flex-md-row.justify-content-between
+            p= `اسم العميل: ${order.username}`
+            p= `رقم الهاتف: ${order.user_phone}`
+            p= `البريد: ${order.user_email}`
+        .actions
+            p اسم اللاب المطلوب: 
+                b.d-block.d-md-inline=order.lap_title
+            button.btn.btn-primary(class="sent", data-id=order._id type="button") جاري التسليم
+            button.btn.btn-success.mx-1(class="delivred", data-id=order._id type="button") تم التسليم

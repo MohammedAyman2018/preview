@@ -1,0 +1,7 @@
+node_modules/
+uploads/*
+.env
+Procfile
+gulpfile.js
+bin
+brands.json

@@ -1,0 +1,8 @@
+mixin feat(feat_image,feat_name,feat_text) 
+    // Start Single Feat
+    div(data-aos="fade-up")
+        .icon.border.my-2.d-flex.justify-content-center.align-items-center
+            img(src=`/static/images/feats/${feat_image}.png`,class="img-fluid" width="50" alt=feat_name)
+        h4.text-center.color= feat_name
+        p.text-center.text-muted= feat_text
+    // End Single Feat

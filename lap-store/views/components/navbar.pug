@@ -1,0 +1,28 @@
+mixin nav(classes=['active', '', '', ''])
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(class=classes[4])
+        .container
+            a.navbar-brand(href="/") 
+                img(src="/static/images/logo.png" class="img-responsive" width="70")
+            button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+            #navbarNav.collapse.navbar-collapse
+                ul.navbar-nav.ml-auto
+                    if(user)
+                        li.nav-item(class=classes[0])
+                            a.nav-link(href="/profile") #{user.name} 
+                    li.nav-item(class=classes[0])
+                        a.nav-link(href="/") الرئيسية 
+                            span.sr-only (current)
+                    li.nav-item(class=classes[1])
+                        a.nav-link(href="/laps") تصفح الأجهزة
+                    li.nav-item(class=classes[2])
+                        a.nav-link(href="/about") حول الموقع
+                    - if (user && user.token !== null)
+                        li.nav-item(class=classes[3])
+                            a.nav-link(href="/admin") لوحةالتحكم
+                    - if (user)
+                        li.nav-item(class=classes[0])
+                            a.nav-link(class="btn btn-danger btn-sm" role="button" href="/auth/logout") تسجيل الخروج
+                    - if (!user)
+                        li.nav-item(class=classes[0])
+                            a.nav-link(class="btn btn-primary btn-sm" role="button" href="/login") سجل الدخول

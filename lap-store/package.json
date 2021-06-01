@@ -1,0 +1,48 @@
+{
+  "name": "lap-store",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon -e js,pug,json",
+    "stop": "taskkill -f -im node.exe",
+    "commit": "git add . && git commit -m",
+    "deploy": "git push heroku master && git push origin master"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.21.0",
+    "connect-flash": "^0.1.1",
+    "cookie-session": "^1.4.0",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "express-mongo-sanitize": "^2.0.0",
+    "helmet": "^3.22.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.7",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.5",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-purgecss": "^2.1.2",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.13.1",
+    "postcss-cssnext": "^3.1.0",
+    "purgecss-from-js": "^1.0.0",
+    "purgecss-from-pug": "^2.1.2"
+  }
+}

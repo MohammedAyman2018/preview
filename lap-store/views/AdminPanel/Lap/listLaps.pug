@@ -1,0 +1,47 @@
+extends ../layout.pug
+block styles
+    link(rel="stylesheet", href="/static/plugins/jquery-tables/style.css")
+block content
+    section.col-12.my-5
+        .container
+            h2.header.mb-5 جميع الأجهزة
+            .table-responsive
+                table#myTable.table.table-striped
+                    thead
+                        tr
+                            th اسم الجهاز
+                            th رامات
+                            th الكمية
+                            th معالج
+                            th السعر
+                    tfoot
+                        tr
+                            th اسم الجهاز
+                            th رامات
+                            th الكمية
+                            th معالج
+                            th السعر
+
+
+
+block scripts
+    script(src="/static/plugins/jquery-tables/main.js")
+    script.
+        $(document).ready( function () {
+            $('#myTable').DataTable({
+                "ajax": "/admin/all-laps",
+                rowId: '_id',
+                "columns": [
+                    {   
+                        "data": "title",
+                        "render": function ( data, type, row ) {
+                            return "<a href=/admin/laps/edit-lap/"+data.split(' ').join('-') + ">" + data + "</a>";
+                        }
+                    },
+                    { "data": "ram" },
+                    { "data": "amount" },
+                    { "data": "cpu" },
+                    { "data": "price" },
+                ]
+            });
+        });

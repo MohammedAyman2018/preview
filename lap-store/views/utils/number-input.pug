@@ -1,0 +1,5 @@
+mixin numberInput(label, name, placeholder, value=null)
+    .form-group
+        label(for=name)= label
+        input.form-control(name=name, id=name, type="number" , placeholder=placeholder aria-describedby=name, value=value)
+        small.form-text.text-danger(id=`${name}-error`)

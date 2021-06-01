@@ -1,0 +1,19 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+	.container
+		a.navbar-brand(href="/") لاب ستور
+		button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
+			span.navbar-toggler-icon
+		#navbarSupportedContent.collapse.navbar-collapse
+			ul.navbar-nav.ml-auto
+				li.nav-item
+					a.nav-link(href="/") الرئيسية
+				li.nav-item.dropdown
+					a#navbarDropdown.nav-link.dropdown-toggle(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+						| اللابات
+					.dropdown-menu(aria-labelledby="navbarDropdown")
+						a.dropdown-item(href="/admin/laps") جميع اللابات
+						a.dropdown-item(href="/admin/laps/add-lap") إضافة لاب جديد
+
+
+				li.nav-item
+					a.nav-link(href="/admin/orders") الطلبيات

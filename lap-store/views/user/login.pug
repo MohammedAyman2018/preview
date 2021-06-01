@@ -1,0 +1,42 @@
+extends ../layout.pug
+
+block styles
+    link(rel="stylesheet", href="/static/css/social_btns.css")
+    title= "لابات | سجل دخول"
+
+block content
+    include ../utils/text-input
+    include ../utils/password-input
+    include ../utils/fb
+    include ../utils/google
+
+    section.py-5
+        .container
+            if(error_msg != '')
+                .alert.alert-warning.alert-dismissible.fade.show(role="alert")
+                    strong #{error_msg}
+                    button.close(type="button", data-dismiss="alert", aria-label="Close")
+                        span(aria-hidden="true") ×
+            if(error != '')
+                .alert.alert-warning.alert-dismissible.fade.show(role="alert")
+                    strong #{error}
+                    button.close(type="button", data-dismiss="alert", aria-label="Close")
+                        span(aria-hidden="true") ×
+            if(success_msg != '')
+                .alert.alert-success.alert-dismissible.fade.show(role="alert")
+                    strong #{success_msg}
+                    button.close(type="button", data-dismiss="alert", aria-label="Close")
+                        span(aria-hidden="true") ×
+            h2.header سجل دخول
+            .social.d-flex.flex-wrap.flex-column.my-3
+                +fb_btn('/auth/facebook', "سجل دخول بالفيس بوك")
+                +google_btn('/auth/google', "سجل دخول بحساب جوجل")
+            .line
+                span أو
+            form.mx-auto(method="post", action="/auth", style="max-width: 300px")
+                +textInput("البريد الإلكتروني:", "email", "مثال: example@example.com")
+                +passwordInput('كلمة السر:', "password", "أدخل كلمة السر")
+                a.mt-3(href="/sign-up") ليس لديك حساب ؟
+                .text-center.mt-3
+                    button.btn.btn-primary(type="submit") سجل دخول
+

@@ -1,0 +1,38 @@
+extends ../layout.pug
+
+block styles
+    link(rel="stylesheet", href="/static/css/libs/aos.css")
+    link(rel="stylesheet", href="/static/css/products.css")
+    title جميع اللابات
+
+    include ../components/slider.pug
+    include ../components/productCard.pug
+block content
+    .container.py-5
+        h2.header لابات
+        .row
+            .col-md-5.col-lg-3.mb-3
+                .p-2.border.shadow.filters
+                    button.btn.btn-outline-secondary.float-right#CloseFilters x
+                    +slider('البراند', "brand",filters[0].brands)
+                    include ../components/price_slider.pug
+                    +slider('الشاشة', "screen",filters[0].screens, "none")
+                    +slider('المعالج', "cpu",filters[0].cpus, "none")
+                    +slider('الهارد', "hard_Desk",filters[0].hardDisks, "none")
+                    +slider('كارت الشاشة', "GPU",filters[0].GPUs, "none")
+                    +slider('الرامات', "ram",filters[0].rams, "none")
+                    
+            .col-md-7.col-lg-9.position-relative
+                include ../components/loader.pug
+                .row#content
+                    each lap in laps
+                        .col-md-6.col-lg-4.mt-3
+                            +productCard(lap)
+
+    a.scrollToTop(href="#") 
+        span.oi.oi-chevron-top
+    button.btn.btn-primary#openFilters الفلاتر
+            
+block scripts 
+    script(src="/static/js/libs/aos.js")
+    script(src="/static/js/pages/all-products.js")

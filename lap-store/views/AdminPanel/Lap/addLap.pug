@@ -1,0 +1,54 @@
+extends ../layout.pug
+block styles
+    link(rel="stylesheet", href="/static/css/libs/font-awesome.css")
+    link(rel="stylesheet", href="/static/plugins/summernote/summernote-bs4.css")
+
+block content
+    section(style="direction: rtl").my-4
+        .container
+            -if(error_msg != '')
+                .alert.alert-warning.alert-dismissible.fade.show(role="alert")
+                    strong #{error_msg}
+                    button.close(type="button", data-dismiss="alert", aria-label="Close")
+            h2.header أضف جهازاً
+            form(enctype="multipart/form-data", method="post",action="/admin/laps").mt-3
+                .row
+                    .col-12
+                        +textInput("اسم الجهاز:", 'title', "اسم الجهاز", lap.title)
+                    .col-md-4
+                        +imageInput(" أضف صورا للجهاز:", "more_images")(multiple)
+                    .col-md-4
+                        +numberInput("الضمان:", "warranty", "0", lap.warranty)
+                    .col-md-4
+                        +textInput(" البراند:" , "brand", "البراند", lap.brand)
+                    .col-md-4
+                        +textInput(" الموديل:" , "model", "الموديل", lap.model)
+                    .col-md-4
+                        +textInput(" الرامات:" , "ram", "الرامات", lap.ram)
+                    .col-md-4
+                        +textInput(" اللون:" , "color", "اللون", lap.color)
+                    .col-md-4
+                        +textInput("المعالج:" , "cpu", "المعالج", lap.cpu)
+                    .col-md-4
+                        +textInput("الهارد:" , "hardDisk", "الهارد", lap.hardDisk)
+                    .col-md-4
+                        +textInput("كارت الشاشة:" , "GPU", "كارت الشاشة", lap.GPU)
+
+                    .col-md-4
+                        +textInput("الشاشة:" , "screen", "الشاشة", lap.screen)
+                    .col-md-4
+                        +textInput("التاجات:" , "tags", "مثال: تاج1, تاج2, تاج3", lap.tags)
+                    .col-md-4
+                        +numberInput("الكمية:", "amount", lap.amount)
+                    .col-md-4
+                        +numberInput("السعر:", "price", lap.price)
+                    .col-12
+                        +textarea('معلومات أخرى:','moreInfo')
+
+                button.btn.btn-primary.px-5(type="submit") تسجيل
+
+block scripts 
+    script(src="/static/plugins/summernote/summernote-bs4.min.js")
+    script.
+        $(function () {$('#moreInfo').summernote()})
+    script(src="/static/js/ajax.js")

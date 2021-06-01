@@ -1,0 +1,112 @@
+extends ../layout.pug
+
+block styles
+    link(rel="stylesheet", href="/static/css/libs/aos.css")
+    link(rel="stylesheet", href="/static/plugins/slick/slick.css")
+    link(rel="stylesheet", href="/static/css/product.css")
+    title #{lap.title} 
+
+block content
+    .container
+        main.py-5
+            .row
+                include ../utils/fb
+                include ../components/modal
+                include ../components/addNumberModal
+                //- Image gallery
+                section.col-md-6(data-aos="fade-left")
+                    //- - let link = location; 
+                    //- +fbShare(link)
+
+                    .slider.slider-for
+                        each image in lap.more_images
+                            div
+                                img(src=image, class="img-fluid", alt=lap.title)
+                    .nav-slider.slider-nav
+                        each image in lap.more_images
+                            div
+                                img(src=image, class="img-fluid", alt=lap.title)
+                //- Details
+                section.info.col-md-6.pt-3(data-aos="fade-right")
+                    h2.mb-3#laptitle #{lap.title}
+                    - if(lap.warranty)
+                        .guarentee.py-2
+                            span.text-success.oi.oi-shield 
+                            span.text-success=  `ضمان ${lap.warranty} سنة`
+
+                    h4.header مواصفات الجهاز:
+                    p #{user}
+                    ul.list-unstyled.p-0.m-0
+                        li
+                            p 
+                                b البراند: 
+                                span #{lap.brand || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b الموديل: 
+                                span #{lap.model || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b الشاشة: 
+                                span #{lap.screen || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b المعالج: 
+                                span #{lap.cpu || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b الهارد: 
+                                span #{lap.hardDisk || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b الرامات: 
+                                span #{lap.ram || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b كارت الشاشة: 
+                                span #{lap.ram || 'لا يوجد معلومات'}
+                        li
+                            p 
+                                b اللون: 
+                                span #{lap.color || 'لا يوجد معلومات'}
+                    .d-flex.flex-wrap
+                        h3
+                            b السعر: 
+                            span.product-card-price.color= lap.price
+                                sub جنيه
+                        - if (orderd && user)
+                            button.mt-3.btn.btn-lg.btn-primary.btn-block#make_order(style="display: none") اطلب الآن
+                            button.mt-3.btn.btn-lg.btn-primary.btn-block#made_success(disabled) سيتم الإتصال بك قريبا
+                        - else if (!user)
+                            +modal("يبدو أنك لم تسجل دخولك بعد","يجب تسجيل الدخول قبل طلب المنتج","/login","سجل دخول")
+                            button.mt-3.btn.btn-lg.btn-primary.btn-block#make_order(type="button" data-toggle="modal" data-target="#exampleModalCenter") اطلب الآن
+                        - else if (user && !user.phone_number)
+                            +editNumberModal
+                            button.mt-3.btn.btn-lg.btn-primary.btn-block(type="button" data-toggle="modal" data-target="#exampleModalCenter") اطلب الآن
+                        - else
+                            button.mt-3.btn.btn-lg.btn-primary.btn-block#make_order اطلب الآن
+                            button.mt-3.btn.btn-lg.btn-primary.btn-block#made_success(disabled, style="display: none") سيتم الإتصال بك قريبا
+                        
+            section.row.mt-3(data-aos="fade-up")
+                .col
+                    h4.header المزيد من المعلومات:
+                    p(data-info= lap.moreInfo)#more_info
+
+            section.products.mt-3(data-aos="fade-up")
+                .container
+                    header.d-flex.justify-content-between.align-items-center.flex-wrap 
+                        h4.header  لابات مشابهة 
+                        a(href="/laps") كل العروض
+                    if (similar && similar.length > 0)
+                        .carousel.my-5
+                            include ../components/productCard.pug
+                            each lap in similar
+                                +productCard(lap)
+                    else 
+                        p.text-muted.text-center.my-5 لا يوجد
+            
+
+block scripts
+    script(src="/static/js/libs/aos.js")
+    script(src="/static/plugins/slick/slick.min.js")
+    script(src="/static/js/pages/product.js")

@@ -1,0 +1,12 @@
+mixin modal(title,text,action,action_desc)
+    #exampleModalCenter.modal.fade(tabindex="-1", role="dialog", aria-labelledby="exampleModalCenterTitle", aria-hidden="true")
+        .modal-dialog.modal-dialog-centered(role="document")
+            .modal-content
+                .modal-header
+                    h5#exampleModalCenterTitle.modal-title=title
+                    button.close.float-left(style="margin: -1rem -1rem auto;" type="button", data-dismiss="modal", aria-label="Close")
+                        span(aria-hidden="true") ×
+                .modal-body=text
+                .modal-footer
+                    button.btn.btn-secondary(type="button", data-dismiss="modal") إغلاق
+                    a.btn.btn-primary(href=action type="button")=action_desc

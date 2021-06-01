@@ -1,0 +1,19 @@
+// Main content
+section.content
+	.error-page
+		h2.headline.text-warning  404
+		.error-content
+			h3
+				i.fas.fa-exclamation-triangle.text-warning
+				|  Oops! Page not found.
+			p
+				| We could not find the page you were looking for.
+				| Meanwhile, you may 
+				a(href="../../index.html") return to dashboard
+				|  or try using the search form.
+			form.search-form
+				.input-group
+					input.form-control(type="text" name="search" placeholder="Search")
+					.input-group-append
+						button.btn.btn-warning(type="submit" name="submit")
+							i.fas.fa-search

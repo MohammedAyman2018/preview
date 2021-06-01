@@ -1,0 +1,9 @@
+.slider.border
+    button.btn.btn-lg.btn-block.border-bottom.d-flex.justify-content-between.align-items-center(type="button") 
+        | السعر
+        span.mr-3.oi.oi-chevron-bottom
+    ul.list-unstyled.price.p-2.flex-column
+        .d-flex.justify-content-between.flex-wrap
+            input.form-control.ml-2(type="number", id="price_from",name="price_from", min=0 , placeholder="من")
+            input.form-control(type="number", id="price_to",name="price_to", min=0 , placeholder="إلى")
+        button#price_search.btn.btn-primary.mt-2  بحث بالسعر

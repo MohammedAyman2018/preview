@@ -1,0 +1,5 @@
+mixin imageInput(label, name)
+    .form-group
+        label(for=name)= label
+        input.form-control-file(name=name, id=name, type="file")&attributes(attributes)
+        small.form-text.text-danger(id=`${name}-error`)
